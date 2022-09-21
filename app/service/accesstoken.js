@@ -1,6 +1,6 @@
 'use strict';
 const Service = require('egg').Service;
-const token_path = '../../configs/tokens.json';
+const token_path = '../../configs/token.json';
 const axios = require('axios');
 const Config = require('../../configs/index');
 const fs = require('fs');
@@ -19,18 +19,20 @@ class tokenService extends Service {
     //
 
     const secret = Config.secret;
-
+    // console.log(secret, 'secretsecret');
     // 先尝试从缓存中读取出token
     try {
+      console.log('获取token');
       tokens = JSON.parse(fs.readFileSync(path.join(__dirname, token_path), {
         encoding: 'utf-8',
       }));
     } catch (err) {
       // 缓存文件读取失败
-      console.error(err);
+      console.log('缓存文件读取失败');
+      // console.error(err);
     }
 
-    if (!tokens.access_token || _isExpire(tokens.create_time, tokens.expire_time)) {
+    if (!tokens.token || _isExpire(tokens.create_time, tokens.expire_time)) {
       // 如果缓存中没有 token，或者 token 过期
       console.log('重新获取 access_token');
       // 发起请求，获取 access_token
@@ -40,7 +42,6 @@ class tokenService extends Service {
           corpsecret: secret,
         },
       });
-
       const { data: {
         access_token, expires_in,
       } } = access_response;

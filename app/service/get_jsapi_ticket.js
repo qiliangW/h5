@@ -9,7 +9,7 @@ const _isExpire = function(create_time, expire_time) {
   const current = Math.floor(Date.now() / 1000);
   return create_time + expire_time < current;
 };
-
+// 如果需要调用jsSdk的时候需要调用次接口来换取jsSdk的调用凭证
 class jsApiTicketService extends Service {
   async getJsApiTicket(access_token) {
     // 先尝试从缓存中读取出jsapi_ticket  => 是H5应用调用企业微信JS接口的临时票据
@@ -24,9 +24,10 @@ class jsApiTicketService extends Service {
     }
     if (!jsapi_ticket.ticket || _isExpire(jsapi_ticket.create_time, jsapi_ticket.expire_time)) {
       // 如果缓存中没有 jsapi_ticket，或者 jsapi_ticket 过期
-      const jsApiTicketRes = await axios.get('https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket', {
+      const jsApiTicketRes = await axios.get('https://qyapi.weixin.qq.com/cgi-bin/ticket/get', {
         params: {
           access_token,
+          type: 'agent_config',
         },
       });
       const { data: {

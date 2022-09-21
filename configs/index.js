@@ -1,10 +1,10 @@
 module.exports = {
   // 企业信息
-  corp_id: '',
+  corp_id: 'wwd9afc78bc4339ed2',
 
   // 应用信息
-  agent_id: '',
-  secret: '',
+  agent_id: '1000002',
+  secret: 'KBGof3wWtur29sjBPssmg6LDvfl-0yChH_XcQRRRz-M',
 
   // 网站根目录 URL
   site_base: 'http://myapp.com:3000',
