@@ -13,10 +13,10 @@ module.exports = appInfo => {
    **/
   const config = (exports = {});
 
-  // config.siteFile = {
-  //   '/': fs.readFileSync(path.join(appInfo.baseDir, 'app/public/dist/index.html')),
+  config.siteFile = {
+    '/': fs.readFileSync(path.join(appInfo.baseDir, 'app/public/dist/index.html')),
 
-  // };
+  };
   config.static = {
     prefix: '/',
     dir: path.join(appInfo.baseDir, 'app/public/dist'),
