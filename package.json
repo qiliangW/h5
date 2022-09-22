@@ -29,7 +29,7 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-geek_h5",
+    "start": "egg-scripts start --title=egg-server-geek_h5",
     "stop": "egg-scripts stop --title=egg-server-geek_h5",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
