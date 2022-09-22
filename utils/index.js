@@ -115,5 +115,5 @@ function decryptCode(data) {
 // 353025
 // console.log(aesDecryptCode('ccebig'));
 module.exports = {
-  aesDecryptCode,
+  decryptCode,
 };
